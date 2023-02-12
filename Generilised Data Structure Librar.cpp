@@ -42,7 +42,7 @@ public:
     int Count();
 
     //////////
-
+    //Additional Function out of Linked List
     void SumAll();
     void OddCount();
     int SearchFirst(int value);
