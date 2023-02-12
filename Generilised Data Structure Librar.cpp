@@ -41,14 +41,30 @@ public:
     void Display();
     int Count();
 
-    //////////
-    //Additional Function out of Linked List
+    ///////////////////////////////////
+    // extra Function of Linked List
+    //////////////////////////////////
+
     void SumAll();
     void OddCount();
     int SearchFirst(int value);
     int SearchLast(int value);
     int Frequency();
     void EvenCount();
+
+    ///////////////////////////////////
+    // Function of Queue Linked List
+    //////////////////////////////////
+
+    T DeQueue();
+    void EnQueue(T No);
+
+    ///////////////////////////////////
+    // Function of Stack Linked List
+    //////////////////////////////////
+
+    void Push(T No);
+    T Pop();
 };
 
 //--------------> Functions Decleration of Singly Linear Linked List ////
@@ -1303,6 +1319,129 @@ void SinglyLL<T>::EvenCount()
         }
     }
     cout << "Even Count is :- " << iCnt << "\n";
+}
+
+///////////////////////////////////////////////////////////
+//
+// Function name        : Delete linked List
+// Parameter            : NONE
+// Description          : Function of Queue linked List to delete the node
+// Return               : NONE
+//
+///////////////////////////////////////////////////////////
+
+template <class T>
+T SinglyLL<T>::DeQueue()
+{
+    T value = First->data;
+    struct node<T> *temp = First;
+
+    if (temp == NULL)
+    {
+        cout << "Unable to delete , coz Queue is Empty\n";
+        return -1;
+    }
+    else
+    {
+        First = First->next;
+        delete temp;
+        Count--;
+        return value;
+    }
+}
+
+///////////////////////////////////////////////////////////
+//
+// Function name        : Enter linked List
+// Parameter            : any kind of data type
+// Description          : Function of Queue linked List to enter the node
+// Return               : NONE
+//
+// specificarion        :-
+//                          in this function the algrithm use to insert the node at last postion in Queue linked list
+//                          while travelling the whole loop
+//                          but i made such kind of function which insert the node on last position without travelling the loop
+//
+///////////////////////////////////////////////////////////
+
+template <class T>
+void SinglyLL<T>::EnQueue(T No)
+{
+    struct node<T> *newn = new node<T>;
+    struct node<T> *temp = First;
+
+    newn->data = No;
+    newn->next = NULL;
+
+    if (First == NULL)
+    {
+        First = newn;
+        Tail = newn;
+    }
+    else
+    {
+        Tail->next = newn;
+        Tail = newn;
+    }
+    Count++;
+}
+
+///////////////////////////////////////////////////////////
+//
+// Function name        : Push (stack)
+// Parameter            : any kind of data type
+// Description          : use to insert the data into the Stack linked List
+// Return               : NONE
+//
+///////////////////////////////////////////////////////////
+
+template <class T>
+void SinglyLL<T>::Push(T No)
+{
+
+    struct node<T> *newn = new node<T>;
+    newn->data = No;
+    newn->next = NULL;
+
+    if (First == NULL)
+    {
+        First = newn;
+    }
+    else
+    {
+        newn->next = First;
+        First = newn;
+    }
+    Count++;
+}
+
+///////////////////////////////////////////////////////////
+//
+// Function name        : Pop (stack)
+// Parameter            : any kind of data type
+// Description          : use to Delete the data from Stack linked List
+// Return               : Integer
+//
+///////////////////////////////////////////////////////////
+
+template <class T>
+T SinglyLL<T>::Pop()
+{
+    T value = First->data;
+    struct node<T> *temp = First;
+
+    if (temp == NULL)
+    {
+        cout << "Unable to delete , coz Stack is Empty\n";
+        return -1;
+    }
+    else
+    {
+        First = First->next;
+        delete temp;
+        Count--;
+        return value;
+    }
 }
 
 int main()
